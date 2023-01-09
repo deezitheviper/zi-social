@@ -1,0 +1,14 @@
+import React from 'react';
+import './styles/Register.scss';
+
+const Register = () => {
+  return (
+    <div className='register'>
+        
+        Register
+    
+    </div>
+  )
+}
+
+export default Register
