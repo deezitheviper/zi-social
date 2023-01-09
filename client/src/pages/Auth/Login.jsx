@@ -8,13 +8,12 @@ const Login = () => {
         <div className='bg-image'>
             <div className='bg-overlay'>
             <div className='login'>
-            <div className="card">
+  
             <form>
                 <input type="text" placeholder='Username' />
                 <input type="password" placeholder='Password' />
                 <button>Login</button>
             </form>
-        </div>
         </div>
         </div>
         </div>
