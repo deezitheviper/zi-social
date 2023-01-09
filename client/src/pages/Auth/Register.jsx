@@ -1,5 +1,7 @@
 import React from 'react';
 import './styles/Auth.scss';
+import { Link } from 'react-router-dom';
+
 
 const Register = () => {
   return (
@@ -14,6 +16,7 @@ const Register = () => {
             <input type="password" placeholder='Password' />
             <input type="text" placeholder='Confirm Password' />
             <button>Register</button>
+            <p>Have an account? <Link to="/Login"> Login</Link></p>
         </form>
 
     </div>
