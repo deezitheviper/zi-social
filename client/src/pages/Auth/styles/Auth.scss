@@ -1,0 +1,46 @@
+.bg{
+    height: 100vh;
+.bg-image{
+    background: url('../../../assets/img/share-bg.jpeg');
+    background-size: contain;
+    height: 100vh;
+    .bg-overlay{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.898);
+        .auth{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            form{
+                display: flex;
+                gap: 10px;
+                flex-direction: column;
+                input{
+                    background-color: hsla(0,0%,100%,.1);
+                    color: #fff;
+                    border: none;
+                    padding: 10px 20px;
+                    border-radius: 20px;
+                    width: 250px;
+                }
+
+                button{
+                    margin-top: 20px;
+                    background-color: chocolate;
+                    border: none;
+                    padding: 15px 25px;
+                    border-radius: 20px;
+                    color: #fff;
+                }
+              
+            }
+        }
+    }
+}
+
+}
