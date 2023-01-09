@@ -1,6 +1,6 @@
 import React from 'react';
 import {IoHomeOutline} from 'react-icons/io5';
-import {BsFillMoonFill,BsGrid1X2,BsSearch} from 'react-icons/bs';
+import {BsMoon,BsGrid1X2,BsSearch} from 'react-icons/bs';
 import {CgProfile} from 'react-icons/cg';
 import { Link } from 'react-router-dom';
 import {HiOutlineMail} from 'react-icons/hi';
@@ -16,7 +16,7 @@ const Navbar = () => {
           <span>zi-social</span>
         </Link>
         <span><IoHomeOutline/></span>
-        <span><BsFillMoonFill/></span>
+        <span><BsMoon/></span>
         <span><BsGrid1X2/></span>
         <div className='search'>
           <input type="text" placeholder='Search...' />
