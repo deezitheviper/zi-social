@@ -6,12 +6,14 @@ const Register = () => {
     <div className='bg'>
     <div className='bg-image'>
         <div className='bg-overlay'>
-        <div className='register'>
+        <div className='auth'>
        
         <form>
             <input type="text" placeholder='Username' />
+            <input type="text" placeholder='Email' />
             <input type="password" placeholder='Password' />
-            <button>Login</button>
+            <input type="text" placeholder='Confirm Password' />
+            <button>Register</button>
         </form>
 
     </div>
