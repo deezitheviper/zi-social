@@ -21,8 +21,23 @@
                 gap: 10px;
                 flex-direction: column;
                 input{
-                    
+                    background-color: hsla(0,0%,100%,.1);
+                    color: #fff;
+                    border: none;
+                    padding: 10px 20px;
+                    border-radius: 20px;
+                    width: 250px;
                 }
+
+                button{
+                    margin-top: 20px;
+                    background-color: chocolate;
+                    border: none;
+                    padding: 15px 25px;
+                    border-radius: 20px;
+                    color: #fff;
+                }
+              
             }
         }
     }
