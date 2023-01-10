@@ -31,7 +31,7 @@ const Navbar = () => {
 
           <div className="profile">
             <img src={avatar} alt="" />
-            <span>John Doe</span>
+            <span>Deezi</span>
           </div>
       </div>
 
