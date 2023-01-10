@@ -38,6 +38,7 @@ overflow: scroll;
                 display: flex;
                 align-items: center;
                 gap: 10px;
+                position: relative;
 
                 span{
                     font-size: 14px;
@@ -47,6 +48,16 @@ overflow: scroll;
                 p{
                     color: gray;
                     font-size: 12px;
+                }
+
+                .online{
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 50%;
+                    background-color: lime;
+                    position: absolute;
+                    top: 0;
+                    left: 20px
                 }
 
                 img{
