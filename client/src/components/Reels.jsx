@@ -2,6 +2,8 @@ import { useContext } from 'react';
 import { useState } from 'react';
 import './styles/Reels.scss';
 import avatar from '../assets/img/avatar.png';
+import {BsFillPlusCircleFill} from 'react-icons/bs';
+
 
 const Reels = () => {
 
@@ -37,10 +39,8 @@ const Reels = () => {
     <div className="reels">
             <div className="reel">
              <img className='realImg'  src={dz.img} alt='' />
-             <div className="user">
-                   <img src={avatar} alt="" />    
-                   <span>Deezi</span>
-            </div>
+             <BsFillPlusCircleFill className='add'/>
+          
            </div>
         {
             tempReels.map(reel => (
