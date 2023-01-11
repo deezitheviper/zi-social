@@ -7,8 +7,12 @@ import {HiOutlineMail} from 'react-icons/hi';
 import {IoMdNotificationsOutline} from 'react-icons/io';
 import avatar from '../assets/img/avatar.png';
 import './styles/Navbar.scss';
+import { useContext } from 'react';
+import { DarkModeContext } from '../context/dmContext';
 
 const Navbar = () => {
+  const {toggle} = useContext(DarkModeContext)
+
   return (
     <div className='navbar'>
       <div className="left">
@@ -16,7 +20,7 @@ const Navbar = () => {
           <span className='logo'>zi-social</span>
         </Link>
         <span><IoHomeOutline/></span>
-        <span><BsMoon/></span>
+        <span onClick={() => toggle()}><BsMoon/></span>
         <span><BsGrid1X2/></span>
         <div className='search'>
           <input type="text" placeholder='Search...' />

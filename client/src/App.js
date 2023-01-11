@@ -21,8 +21,7 @@ function App() {
 
   const currentUser = true;
 
-  const {darkMode} = useContext(DarkModeContext)
- 
+  const {darkMode} = useContext(DarkModeContext);
 
   const Layout = () => {
     return (
