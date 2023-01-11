@@ -9,9 +9,11 @@ import avatar from '../assets/img/avatar.png';
 import './styles/Navbar.scss';
 import { useContext } from 'react';
 import { DarkModeContext } from '../context/dmContext';
+import {MdLightMode} from 'react-icons/md';
+
 
 const Navbar = () => {
-  const {toggle} = useContext(DarkModeContext)
+  const {toggle, darkMode} = useContext(DarkModeContext)
 
   return (
     <div className='navbar'>
@@ -20,7 +22,10 @@ const Navbar = () => {
           <span className='logo'>zi-social</span>
         </Link>
         <span><IoHomeOutline/></span>
-        <span onClick={() => toggle()}><BsMoon/></span>
+        {darkMode?
+        <span onClick={() => toggle()}><MdLightMode/></span>
+        :<span onClick={() => toggle()}><BsMoon/></span>
+        }
         <span><BsGrid1X2/></span>
         <div className='search'>
           <input type="text" placeholder='Search...' />

@@ -1,9 +1,12 @@
 import React from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
 import './styles/Auth.scss';
 
 
 const Login = () => {
+  const {login } = useContext(AuthContext)
   return (
     <div className='bg'>
         <div className='bg-image'>
@@ -13,7 +16,7 @@ const Login = () => {
             <form>
                 <input type="text" placeholder='Username' />
                 <input type="password" placeholder='Password' />
-                <button>Login</button>
+                <button onClick={() => login()}>Login</button>
 
                 <p>Don't have an account? <Link to="/Register"> Register</Link></p>
             </form>

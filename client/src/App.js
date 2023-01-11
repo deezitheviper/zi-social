@@ -13,13 +13,14 @@ import Home from "./pages/Home/Home";
 import Profile from "./pages/Profile/Profile";
 import { DarkModeContext } from "./context/dmContext";
 import { useContext } from "react";
+import { AuthContext } from "./context/AuthContext";
 
 
 
 
 function App() {
 
-  const currentUser = true;
+  const {currentUser} = useContext(AuthContext);
 
   const {darkMode} = useContext(DarkModeContext);
 
