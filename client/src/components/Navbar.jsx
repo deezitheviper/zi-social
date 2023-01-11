@@ -13,7 +13,7 @@ const Navbar = () => {
     <div className='navbar'>
       <div className="left">
         <Link to="/" style={{textDecoration:'none'}}>
-          <span>zi-social</span>
+          <span className='logo'>zi-social</span>
         </Link>
         <span><IoHomeOutline/></span>
         <span><BsMoon/></span>

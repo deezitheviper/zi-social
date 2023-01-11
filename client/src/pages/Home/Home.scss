@@ -1,8 +1,8 @@
+@import "../../assets/styles/styles.scss";
+
 .home{
-    overflow: scroll;
 
-&::-webkit-scrollbar{
-    display: none;
-}
-
+    @include themify($themes){
+        background-color: themed("bgSoft");
+    }
 }

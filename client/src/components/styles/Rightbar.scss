@@ -1,87 +1,92 @@
+@import "../../assets/styles/styles.scss";
+
 .rightbar{
-flex:3;
-position: sticky;
-top: 70px;
-height: calc(100vh - 70px);
-overflow: scroll;
+    @include themify($themes){
+    flex:3;
+    position: sticky;
+    top: 70px;
+    height: calc(100vh - 70px);
+    overflow: scroll;
+    background-color: themed("bgSoft");
+    color: themed('textColor'); 
 
-&::-webkit-scrollbar{
-    display: none;
-}
-
-
-.container{
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-
-    .item{
-        padding: 20px;
-        border-radius: 10px;
-        -webkit-box-shadow: -1px 3px 17px -3px rgba(196,192,196,1);
-        -moz-box-shadow: -1px 3px 17px -3px rgba(196,192,196,1);
-        box-shadow: -1px 3px 17px -3px rgba(196,192,196,1);
-     
-        span{
-            font-size: 15px;
-            color: rgb(90, 88, 88);
-        }
-
-        .user{
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin: 20px 0px;
-
-            .userInfo{
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                position: relative;
-
-                span{
-                    font-size: 14px;
-                    color: black;
-                }
-                
-                p{
-                    color: gray;
-                    font-size: 12px;
-                }
-
-                .online{
-                    width: 10px;
-                    height: 10px;
-                    border-radius: 50%;
-                    background-color: lime;
-                    position: absolute;
-                    top: 0;
-                    left: 20px
-                }
-
-                img{
-                    width: 30px;
-                    border-radius: 50%;
-                    object-fit: contain;
-                }
-            }
-
-            .buttons{
-                display: flex;
-                align-items: center;
-                button{
-                    background-color: cadetblue;
-                    color: aliceblue;
-                    border: none;
-                    padding: 5px 10px;
-                    border-radius: 5px;
-                }
-                
-
-            }
-        }
+    &::-webkit-scrollbar{
+        display: none;
     }
-}
 
+
+    .container{
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .item{
+            padding: 20px;
+            border-radius: 10px;
+            -webkit-box-shadow: -1px 3px 17px -3px rgba(196,192,196,1);
+            -moz-box-shadow: -1px 3px 17px -3px rgba(196,192,196,1);
+            box-shadow: -1px 3px 17px -3px rgba(196,192,196,1);
+        
+            span{
+                font-size: 15px;
+                color: themed("textColorsoft");
+            }
+
+            .user{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin: 20px 0px;
+
+                .userInfo{
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    position: relative;
+
+                    span{
+                        font-size: 14px;
+                        color: themed('textColor');
+                    }
+                    
+                    p{
+                        color: gray;
+                        font-size: 12px;
+                    }
+
+                    .online{
+                        width: 10px;
+                        height: 10px;
+                        border-radius: 50%;
+                        background-color: lime;
+                        position: absolute;
+                        top: 0;
+                        left: 20px
+                    }
+
+                    img{
+                        width: 30px;
+                        border-radius: 50%;
+                        object-fit: contain;
+                    }
+                }
+
+                .buttons{
+                    display: flex;
+                    align-items: center;
+                    button{
+                        background-color: cadetblue;
+                        color: aliceblue;
+                        border: none;
+                        padding: 5px 10px;
+                        border-radius: 5px;
+                    }
+                    
+
+                }
+            }
+        }
+}
+    }
 }

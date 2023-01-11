@@ -1,17 +1,26 @@
+@import "../../assets/styles/styles.scss";
+
 .navbar{
+    @include themify($themes){
+    
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 10px 20px;
     height: 50px;
-    border-bottom: 1px solid lightgray;
+    border-bottom: 1px solid themed('border');
     position: sticky;
     top: 0;
-    background: white;
+    background-color: themed("bg");
+    color: themed("textColor");
+
     .left{
         display: flex;
         align-items: center;
         gap: 20px;
+        .logo{
+            color: themed("logo");
+        }
         span{
             font-weight: bold;
             font-size: 20px;
@@ -19,14 +28,15 @@
         .search{
             display: flex;
             align-items: center;
-            border: 1px solid lightgray;
+            border: 1px solid themed('border');
             border-radius: 5px;
             padding: 5px;
             input{
                 border: none;
                 width: 500px;
                 outline: 0;
-               
+               background-color: transparent;
+               color: themed('textColor');
             }
         }
     }
@@ -56,4 +66,5 @@
             }
         }
     }
+}
 }
