@@ -42,6 +42,9 @@
         @include mobile{
          padding: 20px;
         }
+        @include tablet {
+            padding: 20px;
+         }
     .pInfo{
         padding: 50px;
         border-radius: 20px;
