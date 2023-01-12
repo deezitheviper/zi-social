@@ -20,7 +20,8 @@ const Post = ({post}) => {
             <BiDotsHorizontalRounded/>
         </div>
         <div className="content">
-<img src={post.img} alt="" />
+           <p>{post.content}</p>
+            <img src={post.img} alt="" />
         </div>
         <div className="info">
 

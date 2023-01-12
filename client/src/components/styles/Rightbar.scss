@@ -7,7 +7,8 @@
     top: 70px;
     height: calc(100vh - 70px);
     overflow: scroll;
-    background-color: themed("bgSoft");
+    background-color: themed("bg");
+ 
     color: themed('textColor'); 
 
     &::-webkit-scrollbar{
@@ -20,7 +21,7 @@
         display: flex;
         flex-direction: column;
         gap: 20px;
-        background-color: themed("bg");
+       
 
         .item{
             padding: 20px;

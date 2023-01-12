@@ -1,4 +1,13 @@
+@import "../../assets/styles/styles.scss";
+
 .post{
+    @include themify($themes) {
+    -webkit-box-shadow: 0px 0px 20px 1px rgba(102,101,102,1);
+-moz-box-shadow: 0px 0px 20px 1px rgba(102,101,102,1);
+box-shadow: 0px 0px 20px 1px rgba(102,101,102,1);
+border-radius: 20px;
+background-color: themed("bg");
+color: themed("textColor");
    .container{
     padding: 20px;
     .user{
@@ -19,14 +28,29 @@
             .details{
                 display: flex;
                 flex-direction: column;
+                a{
+                    text-decoration: none;
                 .name{
                     font-weight: 500;
+                    color: themed("textColor");
                 }
+            }
                 .time{
                     font-size: 12px;
                 }
             }
         }
     }
+    .content{
+        margin: 15px 0px;
+
+        img{
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            margin-top: 20px;
+        }
+    }
    }
+}
 }
