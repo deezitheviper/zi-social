@@ -13,7 +13,7 @@ const Rightbar = () => {
         <div className='user'>
         <div className='userInfo'>
           <img src={avatar} alt="" />
-          <span>John Doe</span>
+          <span>The Viper</span>
         </div>
         <div className="buttons">
           <button>Follow</button>
@@ -22,7 +22,7 @@ const Rightbar = () => {
         <div className='user'>
         <div className='userInfo'>
           <img src={avatar} alt="" />
-          <span>John Doe</span>
+          <span>The Viper</span>
         </div>
         <div className="buttons">
           <button>Follow</button>
@@ -36,7 +36,7 @@ const Rightbar = () => {
         <div className='userInfo'>
           <img src={avatar} alt="" />
           <p>
-          <span>John Doe</span><br/>
+          <span>The Viper</span><br/>
           Shared a new post
           </p>
         </div>
@@ -46,7 +46,7 @@ const Rightbar = () => {
         <div className='userInfo'>
           <img src={avatar} alt="" />
           <p>
-          <span>John Doe</span><br/>
+          <span>The Viper</span><br/>
           Changed his profile picture
           </p>
         </div>
@@ -61,7 +61,7 @@ const Rightbar = () => {
         <div className='userInfo'>
           <div className="online" />
           <img src={avatar} alt="" />
-          <span>John Doe</span>
+          <span>The Viper</span>
         </div>
         <div className="buttons">
           <button>Message</button>
@@ -70,7 +70,7 @@ const Rightbar = () => {
         <div className='user'>
         <div className='userInfo'>
           <img src={avatar} alt="" />
-          <span>John Doe</span>
+          <span>The Viper</span>
         </div>
         <div className="buttons">
           <button>Message</button>
