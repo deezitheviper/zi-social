@@ -27,12 +27,16 @@
             font-size: 20px;
         }
         .search{
+          
             display: flex;
             align-items: center;
             border: 1px solid themed('border');
             border-radius: 5px;
             padding: 5px;
             input{
+                @include mobile {
+                    display: none;
+                }
                 border: none;
                 width: 500px;
                 outline: 0;
@@ -42,6 +46,9 @@
         }
     }
     .right{
+        @include mobile {
+            display: none;
+        }
         display: flex;
         align-items: center;
         gap: 20px;

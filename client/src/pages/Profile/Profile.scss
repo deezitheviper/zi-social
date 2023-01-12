@@ -13,6 +13,10 @@
             height: 300px;
             object-fit: cover;
             width: 100%;
+
+            @include mobile{
+                height: 150px;
+            }
         }
         .pavatar{
             width: 200px;
@@ -24,11 +28,20 @@
             top: 200px;
             margin: auto;
             position: absolute;
+
+            @include mobile{
+                width: 100px;
+                height: 100px;
+                top: 100px;
+            }
         }
     
     }
     .pContainer{
         padding: 20px 70px;
+        @include mobile{
+         padding: 20px;
+        }
     .pInfo{
         padding: 50px;
         border-radius: 20px;
@@ -44,6 +57,9 @@
         align-items: center;
         justify-content: center;
         margin-bottom: 20px;
+        @include mobile{
+            padding: 20px;
+           }
         span{
             font-weight: 500;
         }
