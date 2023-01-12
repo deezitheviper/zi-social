@@ -14,7 +14,7 @@ const Post = ({post}) => {
                     <Link to={`/profile/${post.userId}`}>
                         <span className='name'>{post.name}</span>
                     </Link>
-                    <span className='time'>1 min ago </span>
+                    <span className='time'> 1 min ago </span>
                 </div>
             </div>
             <BiDotsHorizontalRounded/>
