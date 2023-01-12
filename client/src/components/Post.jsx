@@ -5,8 +5,12 @@ import avatar from '../assets/img/avatar.png';
 import {MdOutlineFavoriteBorder,MdOutlineFavorite} from 'react-icons/md';
 import {BiCommentDetail} from 'react-icons/bi';
 import {AiOutlineShareAlt} from 'react-icons/ai';
+import { useState } from 'react';
+import Comments from './Comments';
 
 const Post = ({post}) => {
+
+  const [viewComment, setViewComment] = useState(false);
 
   const liked = false;
 
@@ -39,7 +43,7 @@ const Post = ({post}) => {
             0
             </div>
             <div className="item">
-            <BiCommentDetail/>
+            <BiCommentDetail onClick={() => setViewComment(!viewComment)}/>
             0 
             </div>
 
@@ -47,6 +51,12 @@ const Post = ({post}) => {
             <AiOutlineShareAlt />
             </div>
         </div>
+
+        {viewComment && 
+        (
+            <Comments/>
+        )
+        }
         </div>
     </div>
   )

@@ -26,7 +26,7 @@ const Posts = () => {
     userId: 4,
     avatar: avatar,
     img: 'https://images.unsplash.com/photo-1673199187043-70078b38dac7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0OHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60',
-    content: "I'm not yet ready, Life doesn't wait for you to be ready",
+    content: "'I'm not yet ready', Life doesn't wait for you to be ready",
 }
   ]
 
