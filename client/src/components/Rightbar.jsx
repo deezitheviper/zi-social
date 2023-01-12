@@ -40,7 +40,7 @@ const Rightbar = () => {
           Shared a new post
           </p>
         </div>
-        <span>1 min ago</span>
+        <span className='time'>1 min ago</span>
         </div>
         <div className='user'>
         <div className='userInfo'>
@@ -50,7 +50,7 @@ const Rightbar = () => {
           Changed his profile picture
           </p>
         </div>
-        <span>1 min ago</span>
+        <span className='time'>1 min ago</span>
         </div>
         </div>
    

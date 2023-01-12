@@ -9,7 +9,7 @@
     overflow: scroll;
     background-color: themed("bg");
     color: themed('textColor');
-
+    max-width: 15%;
     &::-webkit-scrollbar{
         display: none;
     }

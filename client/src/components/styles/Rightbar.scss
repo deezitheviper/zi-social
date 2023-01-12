@@ -8,7 +8,7 @@
     height: calc(100vh - 70px);
     overflow: scroll;
     background-color: themed("bg");
- 
+    max-width: 25%;
     color: themed('textColor'); 
 
     &::-webkit-scrollbar{
@@ -41,6 +41,10 @@
                 justify-content: space-between;
                 margin: 20px 0px;
 
+                .time{
+                    font-size: 10px;
+                }
+
                 .userInfo{
                     display: flex;
                     align-items: center;
@@ -54,7 +58,7 @@
                     
                     p{
                         color: gray;
-                        font-size: 12px;
+                        font-size: 10px;
                     }
 
                     .online{
@@ -83,6 +87,7 @@
                         border: none;
                         padding: 5px 10px;
                         border-radius: 5px;
+                        font-size: 10px;
                     }
                     
 

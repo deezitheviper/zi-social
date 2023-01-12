@@ -1,0 +1,19 @@
+@import "../../assets/styles/styles.scss";
+
+.profile{
+    @include themify($themes){
+        background-color: themed("bg");
+        .avatar{
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: auto;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}
