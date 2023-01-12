@@ -3,17 +3,54 @@
 .profile{
     @include themify($themes){
         background-color: themed("bg");
-        .avatar{
+ 
+  
+    .header{
+        position: relative;
+        width: 100%;
+    
+        .cover{
+            height: 300px;
+            object-fit: cover;
+            width: 100%;
+        }
+        .pavatar{
             width: 200px;
             height: 200px;
             border-radius: 50%;
             object-fit: cover;
-            position: absolute;
             left: 0;
             right: 0;
+            top: 200px;
             margin: auto;
-            justify-content: center;
-            align-items: center;
+            position: absolute;
+        }
+    
+    }
+    .pContainer{
+        padding: 20px 70px;
+    .pInfo{
+        padding: 50px;
+        border-radius: 20px;
+        -webkit-box-shadow: -1px 3px 17px -3px rgba(196,192,196,1);
+        -moz-box-shadow: -1px 3px 17px -3px rgba(196,192,196,1);
+        box-shadow: -1px 3px 17px -3px rgba(196,192,196,1);
+        height: 100px;
+        background-color: themed("bg");
+        color: themed("textColor");
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        span{
+            font-weight: 500;
+        }
+        .pDetails{
+            font-size: 20px;
         }
     }
+}
+  }
 }
