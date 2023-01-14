@@ -60,7 +60,7 @@ const Post = ({post}) => {
 
         {viewComment && 
         (
-            <Comments/>
+            <Comments postId={post.id}/>
         )
         }
         </div>

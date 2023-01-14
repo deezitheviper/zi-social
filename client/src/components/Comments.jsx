@@ -1,7 +1,12 @@
 import './styles/Comments.scss';
 import avatar from '../assets/img/avatar.png';
+import {useQuery} from '@tanstack/react-query';
+import { instance } from '../axios';
+import moment from 'moment';
 
-const Comments = () => {
+const Comments = (postId) => {
+
+     
   const comments = [
     {
         id:1,
@@ -26,15 +31,28 @@ const Comments = () => {
 }
   ]
 
+  const { isLoading, error, data } = useQuery({
+    queryKey: ['comments'],
+    queryFn: () =>
+    instance.get(`/comments?${postId}`).then(
+       res => {
+        return res.data;
+       }
+      )
+  })
+
+
   return (
     <div className='comments'>
         <div className='write'>
         <img src={avatar} alt='' />
-        <input type="text" placeholder="'I'm not ready', Life doesn't wait for you to be ready" />
+        <input type="text" placeholder="'I'm not yet ready', Life doesn't wait for you to be ready" />
        <button>Comment</button>
         </div>
-        {
-            comments.map(comment=> (
+        {isLoading?
+        "Loading..."
+           : 
+           data?.map(comment=> (
                 <div className='comment'>
                 <img src={comment.avatar} alt='' />
                 <div className="info">
@@ -43,7 +61,7 @@ const Comments = () => {
                 </span>
                 <p>{comment.content}</p>
                 </div>
-                <span className='time'>1 mins ago</span>
+                <span className='time'>{moment(comment.createdOn).fromNow()}</span>
                 </div>
             ))
         }
