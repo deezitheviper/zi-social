@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
@@ -6,7 +7,25 @@ import './styles/Auth.scss';
 
 
 const Login = () => {
-  const {login } = useContext(AuthContext)
+  const {login } = useContext(AuthContext);
+  const [inputs, setInputs] = useState({
+      username:"",
+      password:"",
+  })
+  const [err, setErr] = useState(false)
+  const handleChange = e => {
+    setInputs( data => ({...data, [e.target.name]:e.target.value}));
+  }
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try{
+      await login(inputs);
+    }catch(err){
+      setErr(err.response.data)
+    }
+  };
+
   return (
     <div className='bg'>
         <div className='bg-image'>
@@ -14,9 +33,20 @@ const Login = () => {
             <div className='auth'>
   
             <form>
-                <input type="text" placeholder='Username' />
-                <input type="password" placeholder='Password' />
-                <button onClick={() => login()}>Login</button>
+            {err && <p className='error'>{err}</p>}<br/>
+                <input 
+                type="text" 
+                placeholder='Username' 
+                name='username' 
+                onChange={handleChange}
+                />
+                <input 
+                type="password" 
+                placeholder='Password' 
+                name='password' 
+                onChange={handleChange} 
+                />
+                <button onClick={handleLogin}>Login</button>
 
                 <p>Don't have an account? <Link to="/Register"> Register</Link></p>
             </form>

@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 export const register = (req, res) => {
-    
+
     const {username,email,name, password} = req.body;
 
     const q = "SELECT * FROM users WHERE username = ?"
@@ -25,6 +25,7 @@ export const register = (req, res) => {
 }
 
 export const login = (req, res) => {
+
     const {username} = req.body;
 
     const q = "SELECT * FROM users WHERE username = ?"

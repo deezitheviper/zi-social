@@ -35,8 +35,9 @@ const Register = () => {
     <div className='bg-image'>
         <div className='bg-overlay'>
         <div className='auth'>
-       {err && <p>{err}</p>}
+       
         <form>
+        {err && <p className='error'>{err}</p>}<br/>
             <input type="text" placeholder='Username' name='username' onChange={handleChange} />
             <input type="text" placeholder='Email'  name='email' onChange={handleChange} />
             <input type="text" placeholder='Name' name='name' onChange={handleChange} />

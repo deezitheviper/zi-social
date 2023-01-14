@@ -20,6 +20,9 @@
                 display: flex;
                 gap: 10px;
                 flex-direction: column;
+                .error{
+                    color: coral;
+                }
                 input{
                     background-color: hsla(0,0%,100%,.1);
                     color: #fff;
