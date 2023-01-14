@@ -5,16 +5,21 @@ import {IoIosPeople} from 'react-icons/io';
 import {TiGroup} from 'react-icons/ti';
 import {TfiGallery} from 'react-icons/tfi';
 import {TiMessages} from 'react-icons/ti';
+import { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
 
 
 const Leftbar = () => {
+  const {currentUser} = useContext(AuthContext);
+  const {username} = currentUser;
+
   return (
     <div className="leftbar">
       <div className="container">
         <div className="menu">
           <div className="user">
             <img src={avatar} alt="" />
-            <span>Deezi</span>
+            <span>{username}</span>
           </div>
           <div className='item'>
           <IoIosPeople />

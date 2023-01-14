@@ -10,10 +10,15 @@ import './styles/Navbar.scss';
 import { useContext } from 'react';
 import { DarkModeContext } from '../context/dmContext';
 import {MdLightMode} from 'react-icons/md';
+import { AuthContext } from '../context/AuthContext';
 
 
 const Navbar = () => {
-  const {toggle, darkMode} = useContext(DarkModeContext)
+  const {toggle, darkMode} = useContext(DarkModeContext);
+
+  const {currentUser} = useContext(AuthContext);
+  const {username} = currentUser;
+
 
   return (
     <div className='navbar'>
@@ -40,7 +45,7 @@ const Navbar = () => {
 
           <div className="profile">
             <img src={avatar} alt="" />
-            <span>Deezi</span>
+            <span>{username}</span>
           </div>
       </div>
 

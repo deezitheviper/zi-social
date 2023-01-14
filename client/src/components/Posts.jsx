@@ -1,6 +1,8 @@
 import './styles/Posts.scss';
 import avatar from '../assets/img/avatar.png';
 import Post from './Post';
+import { useQuery } from '@tanstack/react-query';
+import { instance } from '../axios';
 
 const Posts = () => {
   const posts = [
@@ -30,11 +32,23 @@ const Posts = () => {
 }
   ]
 
+  const { isLoading, error, data } = useQuery({
+    queryKey: ['posts'],
+    queryFn: () =>
+    instance.get("/posts").then(
+       res => {
+        return res.data;
+       }
+      )
+  
+  })
+
+  console.log(data)
   return (
     <div className="posts">
 
         {
-            posts.map(post => (
+            data?.map(post => (
                <Post post={post} key={post.id} />
             ))
         }

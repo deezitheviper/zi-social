@@ -10,7 +10,9 @@ import { AuthContext } from "../context/AuthContext";
 
 const Share = () => {
     
-  //const {currentUser} = useContext(AuthContext)
+  const {currentUser} = useContext(AuthContext);
+  const {username} = currentUser;
+
   return (
     <div className="share">
       <div className="container">
@@ -19,7 +21,7 @@ const Share = () => {
             src={avatar}
             alt=""
           />
-          <input type="text" placeholder={`What's on your mind Deezi?`} />
+          <input type="text" placeholder={`What's on your mind ${username}?`} />
         </div>
         <hr />
         <div className="bottom">
