@@ -5,10 +5,12 @@ import Posts from '../../components/Posts';
 import { useParams } from 'react-router-dom';
 import {useQuery, useQueryClient, useMutation} from "@tanstack/react-query";
 import { instance } from '../../axios';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext';
 
 
 const Profile = () => {
-
+  const {currentUser} = useContext(AuthContext);
   const {id} = useParams();
 
 
@@ -36,6 +38,16 @@ const Profile = () => {
                   <a className='icon' href='mailto:deezitheviper@gmail.com' >
                     <CiMail fontSize={30}/>
                     </a>
+                   
+                    {currentUser.username == id?
+                    <button className='follow'>
+                      update
+                    </button>
+                    :
+                    <button className='follow'>
+                    Follow
+                  </button>
+}
                 </div>
 
             </div> 

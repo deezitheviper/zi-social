@@ -70,9 +70,28 @@
         }
         .pDetails{
             font-size: 20px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
          
             .icon{
                 color: aliceblue;
+                cursor: pointer;
+            }
+            .follow{
+                background-color: cadetblue;
+                color: whitesmoke;
+                border: none;
+                padding:5px  20px;
+                border-radius: 2px;
+                cursor: pointer;
+            }
+            .update{
+                background-color: steelblue;
+                color: whitesmoke;
+                border: none;
+                padding:5px  20px;
+                border-radius: 2px;
                 cursor: pointer;
             }
         }

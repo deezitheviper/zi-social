@@ -21,11 +21,10 @@ const Post = ({post}) => {
     const [isReady, setIsReady] = useState(false)
 
     const { isLoading, error, data } = useQuery({
-    queryKey:["likes", isReady],
+    queryKey:[`likes-${post.id}`, isReady],
     queryFn: () =>
     instance.get(`/likes/?postId=${post.id}`).then(
        res => {
-        console.log(res.data)
         return res.data;
             }
         )
@@ -37,7 +36,7 @@ const Post = ({post}) => {
     }, {
         onSuccess: () => {
             // Invalidate and refetch
-            queryClient.invalidateQueries({ queryKey: ["likes", isReady] })
+            queryClient.invalidateQueries({ queryKey: [`likes-${post.id}`, isReady] })
           },
     })
  
@@ -52,7 +51,7 @@ const Post = ({post}) => {
             <div className="userInfo">
                 <img src={avatar} alt="" />
                 <div className='details'>
-                    <Link to={`/profile/${post.userId}`}>
+                    <Link to={`/profile/${post.username}`}>
                         <span className='name'>{post.name}</span>
                     </Link>
                     <span className='time'>{ post.createdOn? moment(post.createdOn).fromNow() : "1 min ago"}  </span>
