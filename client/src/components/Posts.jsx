@@ -35,8 +35,8 @@ const Posts = () => {
   const { isLoading, error, data } = useQuery({
     queryKey: ['posts'],
     queryFn: () =>
-    instance.get("/posts").then(
-       res => {
+    instance.get("/posts/").then(
+       res => { 
         return res.data;
        }
       )

@@ -46,6 +46,7 @@
                 align-items: flex-start;
                 span{
                     font-weight: 500;
+                    text-transform: capitalize;
                 }
                 p{
                     color: themed("textColorSoft");

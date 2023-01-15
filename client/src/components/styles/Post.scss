@@ -33,6 +33,7 @@ color: themed("textColor");
                 .name{
                     font-weight: 500;
                     color: themed("textColor");
+                    text-transform: capitalize;
                 }
             }
                 .time{

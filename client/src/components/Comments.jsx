@@ -3,9 +3,11 @@ import avatar from '../assets/img/avatar.png';
 import {useQuery} from '@tanstack/react-query';
 import { instance } from '../axios';
 import moment from 'moment';
+import {useMutation, QueryClient } from "@tanstack/react-query";
+import { useState } from 'react';
 
-const Comments = (postId) => {
-
+const Comments = ({postId}) => {
+    const [comment, addComment] = useState();
      
   const comments = [
     {
@@ -31,23 +33,44 @@ const Comments = (postId) => {
 }
   ]
 
+  const queryClient = new QueryClient();
+
+  const mutation = useMutation((newComment)=>{
+    return instance.post('/comments/add', newComment)
+  },{
+    onSuccess: () => {
+      // Invalidate and refetch
+      queryClient.invalidateQueries({ queryKey: [`comments-${postId}`] })
+    },
+  })
+
+
   const { isLoading, error, data } = useQuery({
-    queryKey: ['comments'],
+    queryKey: [`comments-${postId}`],
     queryFn: () =>
-    instance.get(`/comments?${postId}`).then(
+    
+    instance.get(`/comments/?postId=${postId}`).then(
        res => {
+   
         return res.data;
        }
       )
+      
   })
+
+  const postComment =  e => {
+    e.preventDefault();
+    mutation.mutate({comment,postId})
+
+  }
 
 
   return (
     <div className='comments'>
         <div className='write'>
         <img src={avatar} alt='' />
-        <input type="text" placeholder="'I'm not yet ready', Life doesn't wait for you to be ready" />
-       <button>Comment</button>
+        <input type="text" placeholder="'I'm not yet ready', Life doesn't wait for you to be ready" onChange={e => addComment(e.target.value) } />
+       <button onClick={postComment} >Comment</button>
         </div>
         {isLoading?
         "Loading..."

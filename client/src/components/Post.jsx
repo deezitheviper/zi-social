@@ -26,18 +26,16 @@ const Post = ({post}) => {
                     <Link to={`/profile/${post.userId}`}>
                         <span className='name'>{post.name}</span>
                     </Link>
-                    <span className='time'>{post.createdOn? moment(post.createdOn).fromNow() : "1 min ago"}  </span>
+                    <span className='time'>{ post.createdOn? moment(post.createdOn).fromNow() : "1 min ago"}  </span>
                 </div>
             </div>
             <BiDotsHorizontalRounded/>
         </div>
         <div className="content">
            <p>{post.content}</p>
-           {post.img.Contains("https") ?
- <img src={post.img} alt="" />
- :
+
  <img src={`../../public/uploads/${post.img}`} alt="" />
-           }
+
         </div>
         <div className="info">
             <div className="item">
