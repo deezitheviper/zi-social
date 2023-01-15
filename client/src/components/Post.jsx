@@ -12,35 +12,43 @@ import {useQuery, QueryClient, useMutation} from "@tanstack/react-query";
 import { instance } from '../axios';
 import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
-
+import {AiOutlineLoading3Quarters} from 'react-icons/ai'
 
 const Post = ({post}) => {
     const {currentUser} = useContext(AuthContext);
     const [viewComment, setViewComment] = useState(false);
     const queryClient = new QueryClient();
+    const [isReady, setIsReady] = useState(false)
 
     const { isLoading, error, data } = useQuery({
-    queryKey:[`likes-${post.id}`],
+    queryKey:["likes", isReady],
     queryFn: () =>
     instance.get(`/likes/?postId=${post.id}`).then(
        res => {
+        console.log(res.data)
         return res.data;
             }
         )
     })
 
     const mutation = useMutation( (liked) => {
-        if(liked) return instance.delete(`/likes/${post.id}`);
-        return instance.post('/likes/add', {postId:post.id});
+        if(liked) {
+            instance.delete(`/likes/${post.id}`)
+            setIsReady(!isReady)
+        }
+        else {
+             instance.post('/likes/add', {postId:post.id})
+             setIsReady(!isReady)
+        }
+
        
     }, {
         onSuccess: () => {
             // Invalidate and refetch
-            queryClient.invalidateQueries({ queryKey: [`likes-${post.id}`] })
+            queryClient.invalidateQueries({ queryKey: ["likes", isReady] })
           },
     })
  
-
     const handleLike = () => {
         mutation.mutate(data.includes(currentUser.id))
     }
@@ -69,16 +77,15 @@ const Post = ({post}) => {
         <div className="info">
             <div className="item">
             {isLoading?
-            "loading.."
+            <AiOutlineLoading3Quarters/>
             :
-            <>
-             {data.includes(currentUser.id)?
+            
+            data?.includes(currentUser.id)?
             <MdOutlineFavorite onClick={handleLike} />
             :
             <MdOutlineFavoriteBorder onClick={handleLike}/>
              }
-            </>
-            }
+        
             {data?.length}
             </div>
             <div className="item">

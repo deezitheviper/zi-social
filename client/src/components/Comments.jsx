@@ -40,18 +40,18 @@ const Comments = ({postId}) => {
   },{
     onSuccess: () => {
       // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: [`comments-${postId}`] })
+      queryClient.invalidateQueries({ queryKey: ["comments", postId] })
     },
   })
 
 
   const { isLoading, error, data } = useQuery({
-    queryKey: [`comments-${postId}`],
+    queryKey: ["comments", postId],
     queryFn: () =>
     
     instance.get(`/comments/?postId=${postId}`).then(
        res => {
-   
+        console.log(res.data)
         return res.data;
        }
       )
