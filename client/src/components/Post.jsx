@@ -32,16 +32,8 @@ const Post = ({post}) => {
     })
 
     const mutation = useMutation( (liked) => {
-        if(liked) {
-            instance.delete(`/likes/${post.id}`)
-            setIsReady(!isReady)
-        }
-        else {
-             instance.post('/likes/add', {postId:post.id})
-             setIsReady(!isReady)
-        }
-
-       
+        if(liked) return instance.delete(`/likes/${post.id}`).then(setIsReady(!isReady));
+        return instance.post('/likes/add', {postId:post.id}).then(setIsReady(!isReady));
     }, {
         onSuccess: () => {
             // Invalidate and refetch

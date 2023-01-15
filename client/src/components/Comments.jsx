@@ -8,6 +8,7 @@ import { useState } from 'react';
 
 const Comments = ({postId}) => {
     const [comment, addComment] = useState();
+    const [isReady, setIsReady] = useState(false)
      
   const comments = [
     {
@@ -36,17 +37,21 @@ const Comments = ({postId}) => {
   const queryClient = new QueryClient();
 
   const mutation = useMutation((newComment)=>{
-    return instance.post('/comments/add', newComment)
+    return instance.post('/comments/add', newComment).then( res => {
+      setIsReady(!isReady)
+      addComment("")
+    }
+    )
   },{
     onSuccess: () => {
       // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ["comments", postId] })
+      queryClient.invalidateQueries({ queryKey: [`comments-${postId}`, isReady] })
     },
   })
 
 
   const { isLoading, error, data } = useQuery({
-    queryKey: ["comments", postId],
+    queryKey: [`comments-${postId}`, isReady],
     queryFn: () =>
     
     instance.get(`/comments/?postId=${postId}`).then(
@@ -61,7 +66,6 @@ const Comments = ({postId}) => {
   const postComment =  e => {
     e.preventDefault();
     mutation.mutate({comment,postId})
-
   }
 
 
