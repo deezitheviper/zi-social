@@ -3,16 +3,20 @@ import {CiMail} from 'react-icons/ci';
 import avatar from "../../assets/img/avatar.png";
 import Posts from '../../components/Posts';
 import { useParams } from 'react-router-dom';
-import {useQuery, useQueryClient, useMutation} from "@tanstack/react-query";
+import {useQuery, QueryClient, useMutation} from "@tanstack/react-query";
 import { instance } from '../../axios';
 import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
+import {AiOutlineLoading3Quarters} from 'react-icons/ai'
+import { useState } from 'react';
 
 
 const Profile = () => {
   const {currentUser} = useContext(AuthContext);
   const {id} = useParams();
 
+  const queryClient = new QueryClient();
+  const [isReady, setIsReady] = useState(false); 
 
   const { isLoading, error, data } = useQuery({
     queryKey: ["user"],
@@ -22,8 +26,29 @@ const Profile = () => {
     })   
   })
 
+  const { isLoading:rLoading, data:relationshipData } = useQuery({
+    queryKey: ["relationship", isReady],
+    queryFn: () =>
+    instance.get(`/relationships/?followed=${data.id}`,).then(res => {
+      return res.data
+    })   
+  })
 
+console.log(relationshipData)
 
+  const mutation = useMutation( (following) => {
+    if(following) return instance.delete(`/relationships/?${currentUser.id}`).then(setIsReady(!isReady));
+    return instance.post(`/relationships/`,{userId:data.id}).then(setIsReady(!isReady));
+}, {
+    onSuccess: () => {
+        // Invalidate and refetch
+        queryClient.invalidateQueries({ queryKey: ["relationship", isReady] })
+      },
+})
+
+const handleFollow = () => {
+    mutation.mutate(relationshipData.includes(currentUser.id))
+}
 
   return (
     <div className='profile'>
@@ -39,14 +64,24 @@ const Profile = () => {
                     <CiMail fontSize={30}/>
                     </a>
                    
-                    {currentUser.username == id?
+                    {rLoading?
+                    <AiOutlineLoading3Quarters/>
+                    :
+                    currentUser.username == id?
                     <button className='follow'>
                       update
                     </button>
                     :
-                    <button className='follow'>
+                    (
+                      relationshipData?.includes(currentUser.id)?
+                      <button disabled onClick={handleFollow} className='unfollow'>
+                      unFollow
+                    </button>
+                    :
+                    <button onClick={handleFollow} className='follow'>
                     Follow
                   </button>
+                    )
 }
                 </div>
 

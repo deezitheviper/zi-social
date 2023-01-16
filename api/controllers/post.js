@@ -28,7 +28,7 @@ export const addPost = (req, res) => {
         const q = "INSERT INTO posts (`content`, `img`, `createdOn`, `user`) VALUES (?)";
         const values = [
             content,
-            imgUrl,
+            imgUrl, 
             moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
             userData.id
         ]
