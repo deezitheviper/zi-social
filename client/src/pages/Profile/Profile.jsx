@@ -9,6 +9,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import {AiOutlineLoading3Quarters} from 'react-icons/ai'
 import { useState } from 'react';
+import { useEffect } from 'react';
 
 
 const Profile = () => {
@@ -27,24 +28,22 @@ const Profile = () => {
   })
 
   const { isLoading:rLoading, data:relationshipData } = useQuery({
-    queryKey: ["relationship", isReady],
+    queryKey: ["relationship",[data?.id,isReady]],
     queryFn: () =>
-    instance.get(`/relationships/?followed=${data.id}`,).then(res => {
+    instance.get(`/relationships/?followed=${data?.id}`).then(res => {
       return res.data
     })   
   })
 
-console.log(relationshipData)
-
   const mutation = useMutation( (following) => {
-    if(following) return instance.delete(`/relationships/?${currentUser.id}`).then(setIsReady(!isReady));
+   
+    if(following) return instance.delete(`/relationships/?userId=${data?.id}`).then(setIsReady(!isReady));
     return instance.post(`/relationships/`,{userId:data.id}).then(setIsReady(!isReady));
 }, {
     onSuccess: () => {
-        // Invalidate and refetch
-        queryClient.invalidateQueries({ queryKey: ["relationship", isReady] })
+        queryClient.invalidateQueries({ queryKey: ["relationship",isReady] })
       },
-})
+})  
 
 const handleFollow = () => {
     mutation.mutate(relationshipData.includes(currentUser.id))
@@ -63,7 +62,7 @@ const handleFollow = () => {
                   <a className='icon' href='mailto:deezitheviper@gmail.com' >
                     <CiMail fontSize={30}/>
                     </a>
-                   
+                  
                     {rLoading?
                     <AiOutlineLoading3Quarters/>
                     :
@@ -73,8 +72,9 @@ const handleFollow = () => {
                     </button>
                     :
                     (
+                     
                       relationshipData?.includes(currentUser.id)?
-                      <button disabled onClick={handleFollow} className='unfollow'>
+                      <button  onClick={handleFollow} className='unfollow'>
                       unFollow
                     </button>
                     :
