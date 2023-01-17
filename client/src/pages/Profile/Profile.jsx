@@ -87,7 +87,7 @@ const handleFollow = () => {
 
             </div> 
 
-            <Posts/>
+            <Posts userId={data?.id}/>
         </div>
     </div>
   )
