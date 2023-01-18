@@ -43,7 +43,7 @@ const Navbar = () => {
            <span><HiOutlineMail/></span>
            <span><IoMdNotificationsOutline/></span>
 
-          <div className="profile">
+          <div className="nav-profile">
             <img src={avatar} alt="" />
             <span>{username}</span>
           </div>

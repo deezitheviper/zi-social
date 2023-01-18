@@ -73,7 +73,7 @@ const handleFollow = () => {
                     <AiOutlineLoading3Quarters/>
                     :
                     currentUser?.username === id?
-                    <button className='follow' onClick={() => openUpdate(true)}>
+                    <button className='follow' onClick={() => openUpdate(false)}>
                       update
                     </button>
                     :
