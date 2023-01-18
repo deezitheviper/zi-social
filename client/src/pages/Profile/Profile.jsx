@@ -70,19 +70,19 @@ const handleFollow = () => {
                     {rLoading?
                     <AiOutlineLoading3Quarters/>
                     :
-                    1 == 1?
-                    <button className='follow' onClick={openUpdate(true)}>
+                    currentUser?.username === id?
+                    <button className='follow' onClick={() => openUpdate(true)}>
                       update
                     </button>
                     :
                     (
                      
                       relationshipData?.includes(currentUser.id)?
-                      <button  onClick={handleFollow} className='unfollow'>
+                      <button  onClick={() => handleFollow()} className='unfollow'>
                       unFollow
                     </button>
                     :
-                    <button onClick={handleFollow} className='follow'>
+                    <button onClick={() => handleFollow()} className='follow'>
                     Follow
                   </button>
                     )

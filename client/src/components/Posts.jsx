@@ -10,7 +10,7 @@ const Posts = ({userId}) => {
     queryKey: ['posts', userId],
     queryFn: () =>
     
-    instance.get( `/posts/?userId=${userId}`).then(
+    instance.get(`/posts/?userId=${userId}`).then(
        res => { 
         return res.data;
        }
