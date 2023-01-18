@@ -9,7 +9,6 @@ import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import {AiOutlineLoading3Quarters} from 'react-icons/ai'
 import { useState } from 'react';
-import { useEffect } from 'react';
 import Update from '../../components/Update';
 
 
@@ -73,7 +72,7 @@ const handleFollow = () => {
                     <AiOutlineLoading3Quarters/>
                     :
                     currentUser?.username === id?
-                    <button className='follow' onClick={() => openUpdate(false)}>
+                    <button className='follow' onClick={() => openUpdate(true)}>
                       update
                     </button>
                     :
@@ -93,7 +92,7 @@ const handleFollow = () => {
 
             </div> 
 
-            <Posts userId={data?.id}/>
+            <Posts userId={data?.id} user={data}/>
         </div>
 {update && ( <Update openUpdate={openUpdate}/>)}
     </div>

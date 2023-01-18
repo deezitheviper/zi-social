@@ -46,7 +46,7 @@
                
                 a{
                     text-decoration: none;
-                    color: whitesmoke;
+                    color: themed("textColor");
                     span{
                         text-transform: capitalize;
                     }
