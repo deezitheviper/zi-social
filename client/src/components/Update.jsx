@@ -12,9 +12,9 @@ const Update = ({openUpdate,user}) => {
   const [cover, setCover] = useState();
   const [inputs, setInputs] = useState({
     name: "",
-    email: "",
     city: "",
   })
+  const [isReady, setIsReady] = useState(false); 
 
   const handleChange = e => {
     setInputs(prev => ({...prev, [e.target.name]: e.target.value} ));
@@ -23,7 +23,7 @@ const Update = ({openUpdate,user}) => {
   const upload = async (file) => {
     try{
       const formData = new FormData();
-      formData.append("file", file);
+      formData.append("img", file);
       const res = await instance.post("/upload", formData);
       return res.data;
     }catch(e){
@@ -32,34 +32,35 @@ const Update = ({openUpdate,user}) => {
   };
 
   const mutation = useMutation((user)=>{
-    return instance.put('/users', user)
+    return instance.put('/users/', user)
   },{
     onSuccess: () => {
       // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ['user'] })
+      queryClient.invalidateQueries({ queryKey: ['user', isReady] })
     },
   })
 
   const handleUpdate= async e => {
     e.preventDefault();
-    let avatarUrl = user.avatar;
-    let coverUrl = user.cover;
+    let avatarUrl;
+    let coverUrl;
 
     coverUrl = cover && await upload(cover)
     avatarUrl = avatar && await upload(avatar)
     mutation.mutate({...inputs, avatarUrl, coverUrl})
-    
+    setIsReady(!isReady)
+    openUpdate(false)
   }
 
   return (
     <div className='update'>
        Update
        <form>
-        <input type="file" />
-        <input type="file" />
+        <input type="file" onChange={e => setCover(e.target.files[0])} />
+        <input type="file" onChange={e => setAvatar(e.target.files[0])} />
         <input type="text" name="name" onChange={handleChange} />
         <input type="text" name="city" onChange={handleChange} />
-       <button onClick={() => handleUpdate()}>Update</button>
+       <button onClick={e => handleUpdate(e)}>Update</button>
       </form>
        <span onClick={() => openUpdate(false)}><AiOutlineClose/></span>
    

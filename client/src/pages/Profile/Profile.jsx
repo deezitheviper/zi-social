@@ -16,7 +16,7 @@ const Profile = () => {
   const {currentUser} = useContext(AuthContext);
   const {id} = useParams();
   const [update, openUpdate] = useState(false);
-
+  
 
   const queryClient = new QueryClient();
   const [isReady, setIsReady] = useState(false); 
@@ -55,8 +55,17 @@ const handleFollow = () => {
   return (
     <div className='profile'>
       <div className="header">
+        {data?.coverPicture?
+        <>
+              <img src={`/uploads/${data?.coverPicture}`} alt="" className='cover'/>
+              <img src={`/uploads/${data?.avatar}`} alt="" className="pavatar" /> 
+              </>
+      :
+      <>
       <img src='https://images.unsplash.com/photo-1626276727721-e5fb4a008389?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjI3fHxzZXR1cHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60' className='cover'/>
         <img src={avatar} alt="" className="pavatar" /> 
+        </>
+}
       </div> 
         <div className="pContainer">
             <div className="pInfo">

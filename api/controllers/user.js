@@ -25,14 +25,15 @@ export const updateUser = (req, res) => {
     const token = req.cookies.accessToken;
     if(!token) return res.status(403).json("Not authorized");
     jwt.verify(token, "secretkey", (err, userData) => {
-        const {name,city,avatar,coverPicture} = req.body;
+        const {name,city,avatarUrl,coverUrl} = req.body;
+       
         if(err) return res.status(403).json("Invalid Token")
-        const q = "UPDATE users SET `name`=?, `city`=?, `avatar`=?,`cover`=? WHERE id=?";
+        const q = "UPDATE users SET `name`=?, `city`=?, `avatar`=?,`coverPicture`=? WHERE id=?";
         const values = [
            name,
            city,
-           avatar,
-           coverPicture,
+           avatarUrl,
+           coverUrl,
            userData.id
         ]
         db.query(q,values, (err, data) => {
