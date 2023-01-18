@@ -13,7 +13,7 @@ export const register = (req, res) => {
         const salt = bcrypt.genSaltSync(10);
         const  hash = bcrypt.hashSync(password, salt);
         const values = [
-            username,email,name,hash
+            username.toLowerCase(),email,name,hash
         ]
         const q = "INSERT INTO users (`username`, `email`,`name`, `password`) VALUES (?)" 
         db.query(q, [values], (err, data) => {

@@ -55,7 +55,7 @@ const Post = ({post}) => {
                         <span className='name'>{post.name}</span>
                     </Link>
                     <span className='time'>{ post.createdOn? moment(post.createdOn).fromNow() : "1 min ago"}  </span>
-                </div>
+                </div> 
             </div>
             <BiDotsHorizontalRounded/>
         </div>

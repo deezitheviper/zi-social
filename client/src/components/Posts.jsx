@@ -7,7 +7,7 @@ import { instance } from '../axios';
 const Posts = ({userId}) => {
 
   const { isLoading, error, data } = useQuery({
-    queryKey: ['posts'],
+    queryKey: ['posts', userId],
     queryFn: () =>
     
     instance.get( `/posts/?userId=${userId}`).then(

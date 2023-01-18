@@ -17,7 +17,9 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleChange = e => {
+    setErr(false)
     setInputs( data => ({...data, [e.target.name]:e.target.value}));
+   
   }
 
   const handleLogin = async (e) => {

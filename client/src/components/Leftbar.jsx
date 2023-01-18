@@ -7,19 +7,22 @@ import {TfiGallery} from 'react-icons/tfi';
 import {TiMessages} from 'react-icons/ti';
 import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
+import { Link } from 'react-router-dom';
 
 
 const Leftbar = () => {
   const {currentUser} = useContext(AuthContext);
-  const {username} = currentUser;
+ 
 
-  return (
+  return ( 
     <div className="leftbar">
       <div className="container">
         <div className="menu">
           <div className="user">
             <img src={avatar} alt="" />
-            <span>{username}</span>
+            <Link to={`/profile/${currentUser.username}`}>
+                        <span className='name'>{currentUser.name}</span>
+                    </Link>
           </div>
           <div className='item'>
           <IoIosPeople />

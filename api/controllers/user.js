@@ -11,6 +11,7 @@ export const getUser = (req, res, next) => {
  
         db.query(q,[user], (err, data) => {
             if(err) return res.status(500).json(err);
+            console.log(data)
             if(data[0]){
             const {password, ...info} = data[0];
             return res.status(200).json(info); 

@@ -10,17 +10,20 @@ import { AuthContext } from '../../context/AuthContext';
 import {AiOutlineLoading3Quarters} from 'react-icons/ai'
 import { useState } from 'react';
 import { useEffect } from 'react';
+import Update from '../../components/Update';
 
 
 const Profile = () => {
   const {currentUser} = useContext(AuthContext);
   const {id} = useParams();
+  const [update, openUpdate] = useState(false);
+
 
   const queryClient = new QueryClient();
   const [isReady, setIsReady] = useState(false); 
 
   const { isLoading, error, data } = useQuery({
-    queryKey: ["user"],
+    queryKey: ["user",id],
     queryFn: () =>
     instance.get(`/users/${id}`,).then(res => {
       return res.data
@@ -49,6 +52,7 @@ const handleFollow = () => {
     mutation.mutate(relationshipData.includes(currentUser.id))
 }
 
+
   return (
     <div className='profile'>
       <div className="header">
@@ -66,8 +70,8 @@ const handleFollow = () => {
                     {rLoading?
                     <AiOutlineLoading3Quarters/>
                     :
-                    currentUser.username == id?
-                    <button className='follow'>
+                    1 == 1?
+                    <button className='follow' onClick={openUpdate(true)}>
                       update
                     </button>
                     :
@@ -89,6 +93,7 @@ const handleFollow = () => {
 
             <Posts userId={data?.id}/>
         </div>
+{update && ( <Update openUpdate={openUpdate}/>)}
     </div>
   )
 }
