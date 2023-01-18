@@ -63,9 +63,11 @@ const handleFollow = () => {
             <div className="pInfo">
             <span>{data?.name}</span>
                 <div className="pDetails">
+                  { currentUser?.username !== id && (
                   <a className='icon' href='mailto:deezitheviper@gmail.com' >
                     <CiMail fontSize={30}/>
                     </a>
+                  )}
                   
                     {rLoading?
                     <AiOutlineLoading3Quarters/>
