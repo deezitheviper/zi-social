@@ -12,14 +12,17 @@ import {useQuery, QueryClient, useMutation} from "@tanstack/react-query";
 import { instance } from '../axios';
 import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
-import {AiOutlineLoading3Quarters} from 'react-icons/ai'
+import {AiOutlineLoading3Quarters,AiFillDelete} from 'react-icons/ai'
+
+
+
 
 const Post = ({post}) => {
     const {currentUser} = useContext(AuthContext);
     const [viewComment, setViewComment] = useState(false);
     const queryClient = new QueryClient();
     const [isReady, setIsReady] = useState(false)
-
+    const [menu, setMenu] = useState(false)
     const { isLoading, error, data } = useQuery({
     queryKey:[`likes-${post.id}`, isReady],
     queryFn: () =>
@@ -39,11 +42,23 @@ const Post = ({post}) => {
             queryClient.invalidateQueries({ queryKey: [`likes-${post.id}`, isReady] })
           },
     })
+
+    const deleteMutation = useMutation( (postId) => {
+        return instance.delete(`/posts/${postId}`).then(setIsReady(!isReady));
+    }, {
+        onSuccess: () => {
+            // Invalidate and refetch
+            queryClient.invalidateQueries({ queryKey: ["posts"] })
+          },
+    })
  
     const handleLike = () => {
         mutation.mutate(data.includes(currentUser.id))
     }
 
+    const handleDelete = () => {
+
+    }
   return (
     <div className='post'>
         <div className="container">
@@ -57,7 +72,8 @@ const Post = ({post}) => {
                     <span className='time'>{ post.createdOn? moment(post.createdOn).fromNow() : "1 min ago"}  </span>
                 </div> 
             </div>
-            <BiDotsHorizontalRounded/>
+            {!menu && (<BiDotsHorizontalRounded onClick={() => setMenu(!menu)} />)}
+            {menu && <AiFillDelete onClick={handleDelete}/>}
         </div>
         <div className="content">
            <p>{post.content}</p>

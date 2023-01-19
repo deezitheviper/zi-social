@@ -42,3 +42,23 @@ export const addPost = (req, res) => {
         })
     })
 }
+
+export const deletePost = (req, res) => {
+    const token = req.cookies.accessToken;
+    if(!token) return res.status(403).json("Not authorized");
+    jwt.verify(token, "secretkey", (err, userData) => {
+
+        if(err) return res.status(403).json("Invalid Token")
+        const {content,imgUrl} = req.body;
+        const q = "DELETE FROM posts WHERE `id`=? AND `user`=?";
+        const values = [
+           req.params.id,
+           userData.id
+        ]
+        db.query(q,[values], (err, data) => {
+            if(err) return res.status(500).json(err);
+            if(data.affectedRow > 0) return res.status(200).json("Post deleted successfully");   
+            return res.status(403).json("You can't delete this post")
+        })
+    })
+}
