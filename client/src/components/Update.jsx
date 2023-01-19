@@ -4,7 +4,7 @@ import {AiOutlineClose} from "react-icons/ai";
 import { instance } from '../axios';
 import {useMutation, QueryClient } from "@tanstack/react-query";
 
-const Update = ({openUpdate,user}) => {
+const Update = ({openUpdate,user, update}) => {
 
   const queryClient = new QueryClient();
 
@@ -14,7 +14,6 @@ const Update = ({openUpdate,user}) => {
     name: "",
     city: "",
   })
-  const [isReady, setIsReady] = useState(false); 
 
   const handleChange = e => {
     setInputs(prev => ({...prev, [e.target.name]: e.target.value} ));
@@ -36,7 +35,7 @@ const Update = ({openUpdate,user}) => {
   },{
     onSuccess: () => {
       // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ['user', isReady] })
+      queryClient.invalidateQueries({ queryKey: ['user',[update]] })
     },
   })
 
@@ -48,7 +47,6 @@ const Update = ({openUpdate,user}) => {
     coverUrl = cover && await upload(cover)
     avatarUrl = avatar && await upload(avatar)
     mutation.mutate({...inputs, avatarUrl, coverUrl})
-    setIsReady(!isReady)
     openUpdate(false)
   }
 
@@ -58,8 +56,8 @@ const Update = ({openUpdate,user}) => {
        <form>
         <input type="file" onChange={e => setCover(e.target.files[0])} />
         <input type="file" onChange={e => setAvatar(e.target.files[0])} />
-        <input type="text" name="name" onChange={handleChange} />
-        <input type="text" name="city" onChange={handleChange} />
+        <input type="text" name="name" defaultValue={user?.name} onChange={handleChange} />
+        <input type="text" name="city" defaultValue={user?.city} onChange={handleChange} />
        <button onClick={e => handleUpdate(e)}>Update</button>
       </form>
        <span onClick={() => openUpdate(false)}><AiOutlineClose/></span>

@@ -22,7 +22,7 @@ const Profile = () => {
   const [isReady, setIsReady] = useState(false); 
 
   const { isLoading, error, data } = useQuery({
-    queryKey: ["user",id],
+    queryKey: ["user",[id,update]],
     queryFn: () =>
     instance.get(`/users/${id}`,).then(res => {
       return res.data
@@ -101,9 +101,9 @@ const handleFollow = () => {
 
             </div> 
 
-            <Posts userId={data?.id} user={data}/>
+            <Posts userId={data?.id} />
         </div>
-{update && ( <Update openUpdate={openUpdate}/>)}
+{update && ( <Update openUpdate={openUpdate} user={data} update={update}  />)}
     </div>
   )
 }
